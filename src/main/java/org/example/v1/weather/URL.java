@@ -2,8 +2,8 @@ package org.example.v1.weather;
 
 public enum URL {
     WEATHER(
-            "https://api.openweathermap.org/data/2.5/weather?lat=41.327953&lon=19.819025&appid=dda8ab5bdf18c9a25c05908d805773cd");
-
+            //"https://api.openweathermap.org/data/2.5/weather?lat=41.327953&lon=19.819025&appid=dda8ab5bdf18c9a25c05908d805773cd");
+ "https://api.open-meteo.com/v1/forecast?latitude=41.33&longitude=19.82&hourly=temperature_2m");
 //https://api.openweathermap.org/data/2.5/weather?lat=10&lon=10&appid=e49f331f3776254ee0574482b2783a49
 
 //    {"coord":
