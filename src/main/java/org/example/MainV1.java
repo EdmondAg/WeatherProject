@@ -1,11 +1,14 @@
-package org.example.weather;
+package org.example;
+
+import org.example.v1.weather.URL;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class Main {
+@Deprecated
+public class MainV1 {
     public static void main(String[] args) {
 
     HttpRequest request = HttpRequest.newBuilder()

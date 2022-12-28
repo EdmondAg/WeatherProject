@@ -1,4 +1,4 @@
-package org.example.weather;
+package org.example.v1.weather;
 
 public enum URL {
     WEATHER(
