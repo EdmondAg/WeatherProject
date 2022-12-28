@@ -12,7 +12,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-public class MeteomaticsHttpCall {
+public class MeteomaticsAPI {
 
     private String data;
     public void callURL() throws Exception {

@@ -1,4 +1,4 @@
-package org.meteo.service;
+package org.meteo.http;
 
 import java.io.IOException;
 import java.net.URI;
@@ -6,7 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public interface WeatherRetrievalService {
+public interface NormalHttpCaller {
     HttpClient CLIENT = HttpClient.newBuilder()
             .followRedirects(HttpClient.Redirect.ALWAYS)
             .build();
