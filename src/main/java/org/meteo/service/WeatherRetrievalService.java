@@ -1,4 +1,4 @@
-package org.example.v2.service;
+package org.meteo.service;
 
 import java.io.IOException;
 import java.net.URI;

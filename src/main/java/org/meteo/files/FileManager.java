@@ -1,4 +1,4 @@
-package org.example.v2.files;
+package org.meteo.files;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +31,6 @@ public interface FileManager {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        assert data != null;
         return data.toString();
     }
 
