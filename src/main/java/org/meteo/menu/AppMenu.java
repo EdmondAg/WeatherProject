@@ -2,9 +2,15 @@ package org.meteo.menu;
 
 import java.util.Scanner;
 
-public class Main {
+public class AppMenu {
     static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+        startApp();
+
+
+    }
+
+    private static void startApp() {
         boolean exit = false;
         while (!exit){
             showMenu();
@@ -16,7 +22,6 @@ public class Main {
             }
         }
         System.out.println("Bye");
-
     }
 
     private static void show3DaysWeather() {

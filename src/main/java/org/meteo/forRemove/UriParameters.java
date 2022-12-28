@@ -1,9 +1,9 @@
-package org.meteo.http;
+package org.meteo.forRemove;
 
 import lombok.*;
 
 @Data
-@Deprecated
+@Deprecated(forRemoval = true)
 public class UriParameters {
     String latitude;
     String longitude;

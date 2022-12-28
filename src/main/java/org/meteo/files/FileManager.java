@@ -2,15 +2,14 @@ package org.meteo.files;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
 public interface FileManager {
 
-    static void saveDataToFile(String data, String fileName) {
+    static void saveFile(String data, String prefix) {
         try {
-            FileWriter fileWriter = new FileWriter(fileName);
+            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate(prefix));
             fileWriter.write(data);
             fileWriter.close();
         } catch (java.io.IOException e) {
@@ -18,24 +17,18 @@ public interface FileManager {
         }
     }
 
-    @Deprecated
-    static String readDataFromFileBytes(String fileName) {
-        StringBuilder data = new StringBuilder();
+    static void saveFile(String data) {
         try {
-            FileReader fileReader = new FileReader(fileName);
-            int i;
-            while ((i = fileReader.read()) != -1) {
-                data.append((char) i);
-            }
-            fileReader.close();
+            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate());
+            fileWriter.write(data);
+            fileWriter.close();
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        return data.toString();
     }
-
-    static String readFileSimple(String fileName) {
+    static String readFile(String fileName) {
         String data = null;
+
         try {
             File myObj = new File(fileName);
             Scanner myReader = new Scanner(myObj);
@@ -47,7 +40,6 @@ public interface FileManager {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
         return data;
     }
 }
