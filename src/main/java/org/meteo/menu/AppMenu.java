@@ -2,12 +2,12 @@ package org.meteo.menu;
 
 import java.util.Scanner;
 
+import static org.meteo.service.OpenWeatherService.getOpenWeatherList;
+
 public class AppMenu {
     static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         startApp();
-
-
     }
 
     private static void startApp() {
@@ -18,7 +18,8 @@ public class AppMenu {
             switch (userCommand){
                 case 1 -> showTodayWeather();
                 case 2 -> show3DaysWeather();
-                case 3 -> exit = true;
+                case 3 -> getOpenWeatherList();
+                case 0 -> exit = true;
             }
         }
         System.out.println("Bye");
@@ -41,11 +42,11 @@ public class AppMenu {
                 Please choose:
                 \tPress 1 for showing today weather.
                 \tPress 2 for seeing 3 coming days.
-                \tETC....
+                \tPress 3 to show all data.
                 \t..
                 \t..
                 \t..
-                \tPress 3 to exit.
+                \tPress 0 to exit.
                 
                 """);
     }

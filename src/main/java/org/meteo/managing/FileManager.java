@@ -20,15 +20,16 @@ public interface FileManager {
         }
     }
 
-    static void saveFile(String data) {
+    static void saveFile(String data, String prefix) {
         try {
-            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate());
+            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate(prefix));
             fileWriter.write(data);
             fileWriter.close();
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
     }
+
     static String readFile(String fileName) {
         String data = null;
 
