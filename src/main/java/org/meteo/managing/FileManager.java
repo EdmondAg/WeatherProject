@@ -1,5 +1,6 @@
 package org.meteo.managing;
 
+import lombok.NonNull;
 import org.meteo.model.OpenWeatherRecord;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public interface FileManager {
 
-    static void saveFile(List<OpenWeatherRecord> data, String prefix) {
+    static void saveFile(@NonNull final List<OpenWeatherRecord> data, final String prefix) {
         try {
             FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate(prefix));
             fileWriter.write(data.toString());
@@ -20,16 +21,19 @@ public interface FileManager {
         }
     }
 
-    static void saveFile(String data) {
+
+    static void saveFile(@NonNull final String data, final String prefix) {
         try {
-            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate());
+            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate(prefix));
             fileWriter.write(data);
             fileWriter.close();
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
     }
-    static String readFile(String fileName) {
+
+
+    static String readFile(@NonNull String fileName) {
         String data = null;
 
         try {
