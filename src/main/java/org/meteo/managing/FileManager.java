@@ -1,16 +1,19 @@
-package org.meteo.files;
+package org.meteo.managing;
+
+import org.meteo.model.OpenWeatherRecord;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.List;
 import java.util.Scanner;
 
 public interface FileManager {
 
-    static void saveFile(String data, String prefix) {
+    static void saveFile(List<OpenWeatherRecord> data, String prefix) {
         try {
             FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate(prefix));
-            fileWriter.write(data);
+            fileWriter.write(data.toString());
             fileWriter.close();
         } catch (java.io.IOException e) {
             e.printStackTrace();
