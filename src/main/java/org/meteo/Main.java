@@ -12,4 +12,8 @@ public class Main {
         System.out.println(data2);
 
     }
+//     TODO: 1.Create a prototype method which will read the data from the file
+//     and fit the data into a class based on the data.
+//     TODO: 2. Read documentation at the website and have a better understanding of query parameters.
+//     TODO: 3. When 2 is done, create a method which will create a query based on the parameters.
 }
