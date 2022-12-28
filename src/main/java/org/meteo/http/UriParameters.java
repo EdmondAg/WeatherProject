@@ -1,8 +1,9 @@
-package org.example.v2.service;
+package org.meteo.http;
 
 import lombok.*;
 
 @Data
+@Deprecated
 public class UriParameters {
     String latitude;
     String longitude;

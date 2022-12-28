@@ -1,7 +1,7 @@
-package org.example.v2.meteomatic;
+package org.meteo.http;
 
 
-import org.example.v2.files.FileManager;
+import org.meteo.files.FileManager;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,7 +10,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-public class MeteomaticsExample {
+public class MeteomaticsHttpCall {
     public static void main(String[] args) throws Exception {
         String username = args[0];
         String password = args[1];
