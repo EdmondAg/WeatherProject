@@ -3,7 +3,7 @@ package org.meteo.managing;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.meteo.model.OpenWeatherRecord;
+import org.meteo.model.Weather;
 
 import java.io.IOException;
 import java.net.URI;
@@ -18,7 +18,7 @@ public interface HttpManager {
             .followRedirects(HttpClient.Redirect.ALWAYS)
             .build();
 
-    static List<OpenWeatherRecord> getOpenWeatherList(String uri) throws IOException, InterruptedException {
+    static List<Weather> getOpenWeatherList(String uri) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .GET()
@@ -47,9 +47,9 @@ public interface HttpManager {
         };
     }
 
-    private static List<OpenWeatherRecord> toOpenWeatherRecord(HttpResponse<String> response) throws JsonProcessingException {
+    private static List<Weather> toOpenWeatherRecord(HttpResponse<String> response) throws JsonProcessingException {
         JavaType returnType = OBJECT_MAPPER.getTypeFactory()
-                .constructCollectionType(List.class, OpenWeatherRecord.class);
+                .constructCollectionType(List.class, Weather.class);
         return OBJECT_MAPPER.readValue(response.body(), returnType);
     }
 }
