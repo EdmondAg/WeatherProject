@@ -19,26 +19,28 @@ public class OpenWeatherService {
                                                                         //"windspeed_10m": [], 5256 items
                                                                         //"soil_moisture_0_1cm": [] 5256 items
 
+    public static final String URL2 = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&start_date=2022-12-29&end_date=2022-12-31";
     static private List<OpenWeatherRecord> dataList = new ArrayList<>();
     static private String dataString;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        callList();
-//        callString();
+//        callList(URL2);
+//        callString(URL1);
     }
 
-    private static void callString() {
+    public static String callString(String URI) {
         try {
-            dataString = HttpManager.getOpenWeatherString(URL1);
-            System.out.println(dataString);
+            dataString = HttpManager.getOpenWeatherString(URI);
+//            System.out.println(dataString);
             FileManager.saveFile(dataString, "openWeatherData");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        return dataString;
     }
 
-    private static void callList() throws IOException, InterruptedException {
-        dataList = HttpManager.getOpenWeatherList(URL1);
+    public static void callList(String URI) throws IOException, InterruptedException {
+        dataList = HttpManager.getOpenWeatherList(URI);
         getOpenWeatherList();
         FileManager.saveFile(dataList, "Open_weather.txt");
     }
