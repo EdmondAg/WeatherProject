@@ -1,4 +1,4 @@
-package org.meteo.managing;
+package org.meteo.utils;
 
 import lombok.NonNull;
 

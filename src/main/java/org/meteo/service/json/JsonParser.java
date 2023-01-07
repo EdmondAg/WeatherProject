@@ -3,15 +3,16 @@ package org.meteo.service.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.meteo.utils.TimeFormatter;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class JsonParser {
-    static final ObjectMapper objectMapper = getObjectMapper();
+public interface JsonParser extends TimeFormatter {
+    ObjectMapper objectMapper = getObjectMapper();
 
-    public static ObjectMapper getObjectMapper() {
+    static ObjectMapper getObjectMapper() {
         return new ObjectMapper();
     }
 
@@ -20,7 +21,7 @@ public class JsonParser {
     }
 
 
-    public static Map<LocalDateTime,String> mapData(String data) throws JsonProcessingException {
+    default Map<LocalDateTime,String> mapData(String data) throws JsonProcessingException {
         JsonNode jsonNode = JsonParser.parse(data);
         Map<LocalDateTime,String> timeTemp = new LinkedHashMap<>();
 
@@ -31,10 +32,5 @@ public class JsonParser {
             timeTemp.put(formattedTime, temp + " °C");
         }
         return timeTemp;
-    }
-
-    public static LocalDateTime formatTime(LocalDateTime fullDate) {
-        return LocalDateTime.of(fullDate.getYear(), fullDate.getMonth(), fullDate.getDayOfMonth(),
-                fullDate.getHour(), 0);
     }
 }

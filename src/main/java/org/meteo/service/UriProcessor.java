@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public interface UriProcessor {
+public interface UriProcessor extends JsonParser {
 
     default Map<LocalDateTime, String> useURI(final String URI) throws IOException {
         String date = withUri(URI);
-        return JsonParser.mapData(date);
+        return mapData(date);
     }
 
     private static String withUri(String URI) {

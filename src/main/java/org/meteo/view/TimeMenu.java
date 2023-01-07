@@ -1,14 +1,13 @@
 package org.meteo.view;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Map;
+
 import static org.meteo.view.Application.scanner;
 import static org.meteo.view.Application.user;
 
 
 
-public interface TimeMenu extends DailyWeather {
+public interface TimeMenu extends DailyWeather, Printer {
     Application application = Application.getInstance();
 
     default void getTimeInterval() throws IOException {
@@ -17,15 +16,15 @@ public interface TimeMenu extends DailyWeather {
                 " press enter to select actual time or enter your start date or write q to go back at main menu: ");
 
 
-        String startDate = scanner.nextLine();
-        startDate = verifyStartDate(startDate);
+        String startDate = scanner.next();
+        String start = verifyStartDate(startDate);
 
         System.out.println("Enter end date: ");
         String endDate = scanner.next();
-        endDate = verifyEndDate(endDate, startDate);
+        String end = verifyEndDate(endDate, start);
 
-        System.err.println(startDate + " -> " + endDate);
-        confirmDate(startDate, endDate);
+        System.err.println(start + " -> " + end);
+        confirmDate(start, end);
     }
 
 
@@ -34,7 +33,7 @@ public interface TimeMenu extends DailyWeather {
         System.err.println("Confirm? (y/n) or press q to go back at main menu");
         String confirm = scanner.next();
         switch (confirm) {
-            case "y" -> print(startDate, endDate);
+            case "y" -> printTimeAndTemperature(startDate, endDate);
             case "n" -> getTimeInterval();
             case "q" -> application.startApp();
             default -> {
@@ -45,17 +44,12 @@ public interface TimeMenu extends DailyWeather {
 
     }
 
-    static void print(String startDate, String endDate) throws IOException {
-        Map<LocalDateTime, String> map = user.withUserRequest(startDate, endDate);
-        Printer.print(map);
-    }
 
      default String verifyEndDate(String endDate, String startDate) throws IOException {
 
         if (endDate.equals("q")) {
             application.startApp();
         }
-
         verifyDateLimit(endDate);
 
         while (endDate.compareTo(startDate) < 0) {
@@ -70,7 +64,7 @@ public interface TimeMenu extends DailyWeather {
 
     private String verifyStartDate(String startDate) throws IOException {
 
-        if (startDate.equals("")){
+        if (startDate.isEmpty()){
             startDate = user.actualTime.toString();
         } else if (startDate.equals("q")){
             application.startApp();

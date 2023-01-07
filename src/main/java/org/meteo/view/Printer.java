@@ -1,5 +1,6 @@
 package org.meteo.view;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Set;
 import static org.meteo.view.Application.user;
 
 public interface Printer {
-    static void print(Map<LocalDateTime, String> timeTemp) {
+    default void printTimeAndTemperature(Map<LocalDateTime, String> timeTemp) {
         List<String> datesList = mapDate(timeTemp);
 
         for (String date : datesList) {
@@ -23,6 +24,12 @@ public interface Printer {
         }
     }
 
+    default void printTimeAndTemperature(String startDate, String endDate) throws IOException {
+        Map<LocalDateTime, String> map = user.withUserRequest(startDate, endDate);
+        printTimeAndTemperature(map);
+    }
+
+
     private static List<String> mapDate(Map<LocalDateTime, String> timeTemp) {
         Set<LocalDateTime> dates = timeTemp.keySet();
         return dates.stream()
@@ -30,6 +37,8 @@ public interface Printer {
                         date.getDayOfMonth() + "." +
                         date.getMonthValue()).distinct().toList();
     }
+
+
 
 
      default void showMenu() {
