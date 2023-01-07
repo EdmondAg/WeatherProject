@@ -1,25 +1,13 @@
 package org.meteo.managing;
 
 import lombok.NonNull;
-import org.meteo.model.Weather;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.List;
 import java.util.Scanner;
 
-public interface FileManager {
-
-    static void saveFile(@NonNull final List<Weather> data, final String prefix) {
-        try {
-            FileWriter fileWriter = new FileWriter(NameManager.generateNameBasedOnDate(prefix));
-            fileWriter.write(data.toString());
-            fileWriter.close();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
-    }
+public interface FileManager  {
 
 
     static void saveFile(@NonNull final String data, final String prefix) {

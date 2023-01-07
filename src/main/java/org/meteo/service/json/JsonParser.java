@@ -1,4 +1,4 @@
-package org.meteo.json;
+package org.meteo.service.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class JsonParser {
-    static ObjectMapper objectMapper = getObjectMapper();
+public class JsonParser {
+    static final ObjectMapper objectMapper = getObjectMapper();
 
     public static ObjectMapper getObjectMapper() {
         return new ObjectMapper();
@@ -26,9 +26,7 @@ public abstract class JsonParser {
 
         for ( int i = 0; i < jsonNode.get("hourly").get("time").size(); i++) {
             String fullDate = jsonNode.get("hourly").get("time").get(i).asText();
-//          "2022-12-30T00:00",
             LocalDateTime formattedTime = formatTime(LocalDateTime.parse(fullDate));
-
             double temp = jsonNode.get("hourly").get("temperature_2m").get(i).asDouble();
             timeTemp.put(formattedTime, temp + " °C");
         }
@@ -39,5 +37,4 @@ public abstract class JsonParser {
         return LocalDateTime.of(fullDate.getYear(), fullDate.getMonth(), fullDate.getDayOfMonth(),
                 fullDate.getHour(), 0);
     }
-
 }

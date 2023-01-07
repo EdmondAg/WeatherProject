@@ -44,10 +44,6 @@ public enum City {
         return LONGITUDE;
     }
 
-//    public String toString() {
-//        return name() + " (" + country + ")" + " (" + latitude + ")" + " (" + longitude + ")";
-//    }
-
     public String toString() {
         return name() + " (" + COUNTRY + ")";
     }
@@ -55,17 +51,6 @@ public enum City {
     public String getOnlyCity() {
         return name();
     }
-
-//Create a method which prints all the cities in a given country
-//    public static void printCitiesInCountry(Country country) {
-//        for (City city : City.values()) {
-//            if (city.getCountry().equals(String.valueOf(country))) {
-//                System.out.println(city);
-//            }
-//        }
-//    }
-
-//    Create a list which returns all the cities
 
     public static List<City> getCities() {
         //        Add only and only city name in the list and nothing more
