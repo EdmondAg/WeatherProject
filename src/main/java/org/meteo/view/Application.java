@@ -12,6 +12,7 @@ import org.meteo.service.dao.WeatherDao;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -90,25 +91,14 @@ public class Application extends SentenceParser implements CityMenu, TimeMenu, P
         }
     }
 
-
-
-
-
-
-
     static SessionFactory dbSession = BaseDao.getDbSession();
     static Map<Integer, String> cities = new HashMap<>();
-    public Map<City,Weather> getCityWeather() {
-        Weather weather = new Weather();
-        City city = new City();
-
-        Session session = dbSession.openSession();
-        session.beginTransaction();
-
-        return null;
-
+    public static List<City> findCity(String cityName) {
+        try(Session session = dbSession.openSession()) {
+            return session.createQuery("from City WHERE cityName = :name", City.class)
+                    .setParameter("name", cityName).list();
+        }
     }
 
-    static {
-    }
+
 }
