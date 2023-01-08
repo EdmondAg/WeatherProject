@@ -1,14 +1,15 @@
 package org.meteo;
 
-import org.meteo.view.Application;
+import org.meteo.dao.CityDao;
 
 import java.io.IOException;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Application application = Application.getInstance();
-        application.startApp();
+        CityDao cityDao = new CityDao();
+       /* Application application = Application.getInstance();
+        application.startApp();*/
     }
 }
 
