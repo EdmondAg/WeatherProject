@@ -42,7 +42,7 @@ public interface Printer {
 
 
      default void showMenu() {
-        System.out.println(user.actualCity + ", " + user.actualTime + " :");
+        System.out.println(user.city + ", " + user.actualTime + " :");
         System.out.println("""
         -    \tPress 1 to change city.
         -    \tPress 2 for today weather.

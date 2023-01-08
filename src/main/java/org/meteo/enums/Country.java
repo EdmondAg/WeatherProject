@@ -1,5 +1,6 @@
 package org.meteo.enums;
 
+@Deprecated
 public enum Country {
     ALBANIA("Albania", "AL"),
     FRANCE("France", "FR"),

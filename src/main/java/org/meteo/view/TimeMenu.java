@@ -10,7 +10,7 @@ import static org.meteo.view.Application.user;
 public interface TimeMenu extends DailyWeather, Printer {
     Application application = Application.getInstance();
 
-    default void getTimeInterval() throws IOException {
+    default void getTimeInterval() throws IOException, InterruptedException {
         System.out.println("(yyyy-mm-dd) Example: 2021-05-01");
         System.out.println("Actual time is "+ user.actualTime + ";" +
                 " press enter to select actual time or enter your start date or write q to go back at main menu: ");
@@ -28,8 +28,8 @@ public interface TimeMenu extends DailyWeather, Printer {
     }
 
 
-    private void confirmDate(String startDate, String endDate) throws IOException {
-        System.out.println("Start date: " + startDate + "; End date: " + endDate + " for city: " + user.actualCity);
+    private void confirmDate(String startDate, String endDate) throws IOException, InterruptedException {
+        System.out.println("Start date: " + startDate + "; End date: " + endDate + " for city: " + user.city);
         System.err.println("Confirm? (y/n) or press q to go back at main menu");
         String confirm = scanner.next();
         switch (confirm) {
@@ -45,7 +45,7 @@ public interface TimeMenu extends DailyWeather, Printer {
     }
 
 
-     default String verifyEndDate(String endDate, String startDate) throws IOException {
+     default String verifyEndDate(String endDate, String startDate) throws IOException, InterruptedException {
 
         if (endDate.equals("q")) {
             application.startApp();
@@ -62,7 +62,7 @@ public interface TimeMenu extends DailyWeather, Printer {
     }
 
 
-    private String verifyStartDate(String startDate) throws IOException {
+    private String verifyStartDate(String startDate) throws IOException, InterruptedException {
 
         if (startDate.isEmpty()){
             startDate = user.actualTime.toString();
@@ -75,7 +75,7 @@ public interface TimeMenu extends DailyWeather, Printer {
         return startDate;
     }
 
-    private void verifyDateLimit(String date) throws IOException {
+    private void verifyDateLimit(String date) throws IOException, InterruptedException {
         if (date.length() != 10 || date.charAt(4) != '-' || date.charAt(7) != '-'){
             System.out.println("Wrong date format!");
             getTimeInterval();

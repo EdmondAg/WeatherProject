@@ -7,6 +7,7 @@ import org.meteo.utils.TimeFormatter;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public interface JsonParser extends TimeFormatter {
@@ -32,5 +33,20 @@ public interface JsonParser extends TimeFormatter {
             timeTemp.put(formattedTime, temp + " °C");
         }
         return timeTemp;
+    }
+
+    default Map<String,List<String>> mapCities(String data) throws JsonProcessingException {
+        JsonNode jsonNode = JsonParser.parse(data);
+//        [{"name": "Paris", "latitude": 48.8566, "longitude": 2.3522,
+//        "country": "FR", "population": 11020000, "is_capital": true}]
+        Map<String,List<String>> cities = new LinkedHashMap<>();
+
+        String name = jsonNode.get(0).get("name").asText();
+        String latitude = jsonNode.get(0).get("latitude").asText();
+        String longitude = jsonNode.get(0).get("longitude").asText();
+
+        cities.put(name, List.of(latitude, longitude));
+
+        return cities;
     }
 }

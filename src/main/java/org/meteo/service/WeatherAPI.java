@@ -4,7 +4,7 @@ import org.meteo.enums.City;
 
 import java.time.LocalDateTime;
 
-public class DataAndLocation {
+public class WeatherAPI {
     private String latitude = City.TIRANE.getLatitude();
     private String longitude = City.TIRANE.getLongitude();
 
@@ -12,17 +12,17 @@ public class DataAndLocation {
 
     private String endTime = LocalDateTime.now().toString();
 
-    public void selectCity(City city){
-        this.latitude = city.getLatitude();
-        this.longitude = city.getLongitude();
+    void setCity(String latitude, String longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public void selectTime(String startTime, String endTime) {
+    void selectTime(String startTime, String endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public String getUrl() {
+     String getUrl() {
         String openMeteoUri =   "https://api.open-meteo.com/v1/forecast?" +
                                 "latitude=%s" +
                                 "&longitude=%s" +

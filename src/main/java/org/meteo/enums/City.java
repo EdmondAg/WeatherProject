@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Deprecated
 public enum City {
     LONDON(Country.ENGLAND, "51.509865","-0.118092"),
     TIRANE(Country.ALBANIA,"41.327953","19.818698"),
